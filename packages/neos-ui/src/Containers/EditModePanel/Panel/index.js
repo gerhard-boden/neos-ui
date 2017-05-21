@@ -5,7 +5,7 @@ import HorizontalScroll from 'react-scroll-horizontal';
 import Button from '@neos-project/react-ui-components/src/Button/index';
 import I18n from '@neos-project/neos-ui-i18n';
 
-export default class DimensionSwitcher extends PureComponent {
+export default class Panel extends PureComponent {
     static propTypes = {
         title: PropTypes.string.isRequired,
         className: PropTypes.string.isRequired,
@@ -19,14 +19,23 @@ export default class DimensionSwitcher extends PureComponent {
     render() {
         const {title, className, modes, current, currentMode, style, onPreviewModeClick} = this.props;
 
-        const scrollConfiguration = {
-            style: style.editModePanel__scrollable
+        let sliderSettings = {
+            dots: true,
+            infinite: false,
+            speed: 500,
+            slidesToScroll: 1,
+            slidesToShow: 1,
+            variableWidth: true,
+            //focusOnSelect: true,
+            adaptiveHeight: true,
+            easing: 'swing',
+            edgeFriction: 0
         };
 
         return (
             <div className={className}>
                 <p>{title} {currentMode && <b className={style.editModePanel__current}><I18n id={currentMode.title}/></b>}</p>
-                <HorizontalScroll {...scrollConfiguration}>
+                <Slider {...sliderSettings}>
                     {modes.map(previewMode => (
                         <Button
                             key={previewMode.id}
@@ -37,7 +46,7 @@ export default class DimensionSwitcher extends PureComponent {
                             <I18n id={previewMode.title}/>
                         </Button>
                     ))}
-                </HorizontalScroll>
+                </Slider>
             </div>
         );
     }

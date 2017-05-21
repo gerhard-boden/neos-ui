@@ -88,7 +88,11 @@
     "reselect": "^2.4.0",
     "uuid": "^2.0.2",
     "whatwg-fetch": "^1.0.0",
+<<<<<<< HEAD
     "hashlru": "2.2.0"
+=======
+    "react-slick": "^0.14.11"
+>>>>>>> BUGFIX: Replace broken horizontal scroller
   },
   "license": "GNU GPLv3",
   "jest": {
