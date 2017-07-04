@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import FlashMessages from './FlashMessages/index';
 
@@ -15,6 +16,9 @@ const App = ({globalRegistry, menu}) => {
     const ContentCanvas = containerRegistry.get('ContentCanvas');
     const RightSideBar = containerRegistry.get('RightSideBar');
 
+    // HINT: the SecondaryToolbar must be *BELOW* the
+    // ContentCanvas; to ensure the SecondaryToolbar is rendered
+    // afterwards and can overlay the ContentCanvas
     return (
         <div>
             <div id="dialog"/>
@@ -23,10 +27,10 @@ const App = ({globalRegistry, menu}) => {
             <FullScreen/>
             <PrimaryToolbar/>
             <EditModePanel/>
+            <ContentCanvas/>
             <SecondaryToolbar/>
             <Drawer menuData={menu}/>
             <LeftSideBar/>
-            <ContentCanvas/>
             <RightSideBar/>
         </div>
     );

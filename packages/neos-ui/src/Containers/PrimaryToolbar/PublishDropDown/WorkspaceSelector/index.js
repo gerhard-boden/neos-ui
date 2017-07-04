@@ -1,4 +1,5 @@
-import React, {PureComponent, PropTypes} from 'react';
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import {$get, $transform} from 'plow-js';
 import SelectBox from '@neos-project/react-ui-components/src/SelectBox/';
 import {neos} from '@neos-project/neos-ui-decorators';
@@ -37,8 +38,8 @@ export default class WorkspaceSelector extends PureComponent {
             {anyWorkspacesAvailable && (changingWorkspaceAllowed ?
                 <SelectBox
                     options={workspacesOptions}
-                    onSelect={onWorkspaceSelect}
                     value={baseWorkspace}
+                    onValueChange={onWorkspaceSelect}
                     /> :
                 <div className={style.notAllowed} title={i18nRegistry.translate('Neos.Neos:Main:content.components.dirtyWorkspaceDialog.dirtyWorkspaceContainsChanges')}>
                     {baseWorkspaceTitle} – {i18nRegistry.translate('Neos.Neos:Main:content.components.dirtyWorkspaceDialog.dirtyWorkspaceHeader')}

@@ -1,4 +1,5 @@
-import React, {PureComponent, PropTypes} from 'react';
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import mergeClassNames from 'classnames';
 
 class TextInput extends PureComponent {
@@ -7,6 +8,11 @@ class TextInput extends PureComponent {
          * An optional className to render on the textarea node.
          */
         className: PropTypes.string,
+
+        /**
+         * An optional className for the surrounding container div.
+         */
+        containerClassName: PropTypes.string,
 
         /**
          * An optional HTML5 placeholder.
@@ -67,6 +73,7 @@ class TextInput extends PureComponent {
             validationErrors,
             theme,
             highlight,
+            containerClassName,
             ...rest
         } = this.props;
         const classNames = mergeClassNames({
@@ -81,7 +88,7 @@ class TextInput extends PureComponent {
         });
 
         return (
-            <div>
+            <div className={containerClassName}>
                 <input
                     {...rest}
                     className={classNames}

@@ -1,4 +1,5 @@
-import React, {PureComponent, PropTypes} from 'react';
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import I18n from '@neos-project/neos-ui-i18n';
 import SelectBox from '@neos-project/react-ui-components/src/SelectBox/';
 import {neos} from '@neos-project/neos-ui-decorators';
@@ -15,12 +16,6 @@ export default class SelectBoxEditor extends PureComponent {
         i18nRegistry: PropTypes.object.isRequired
     };
 
-    constructor(props) {
-        super(props);
-
-        this.handleDelete = () => this.props.commit('');
-    }
-
     render() {
         const {commit, value, options, i18nRegistry} = this.props;
         const selectBoxOptions = Object.keys(options.values)
@@ -34,13 +29,11 @@ export default class SelectBoxEditor extends PureComponent {
         ).filter(k => k);
         // Placeholder text must be unescaped in case html entities were used
         const placeholder = options && options.placeholder && i18nRegistry.translate(unescape(options.placeholder));
-        const onDelete = this.handleDelete;
 
         return (<SelectBox
             options={selectBoxOptions}
             value={value}
-            onSelect={commit}
-            onDelete={onDelete}
+            onValueChange={commit}
             placeholder={placeholder}
             />);
     }

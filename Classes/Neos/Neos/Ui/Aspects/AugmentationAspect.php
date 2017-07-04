@@ -103,7 +103,7 @@ class AugmentationAspect
 
     /**
      * Hooks into standard content element wrapping to render those attributes needed for the package to identify
-     * nodes and typoScript paths
+     * nodes and Fusion paths
      *
      * @Flow\Around("method(Neos\Neos\Service\ContentElementWrappingService->wrapContentObject())")
      * @param JoinPointInterface $joinPoint the join point
@@ -118,7 +118,9 @@ class AugmentationAspect
         /** @var NodeInterface $node */
         $node = $joinPoint->getMethodArgument('node');
         $content = $joinPoint->getMethodArgument('content');
-        $fusionPath = $joinPoint->getMethodArgument('typoScriptPath');
+
+        // Stay compatible with Neos 3.0. When we remove this compatibility, we can convert everything to "fusionPath").
+        $fusionPath = ($joinPoint->isMethodArgument('typoScriptPath') ? $joinPoint->getMethodArgument('typoScriptPath'): $joinPoint->getMethodArgument('fusionPath'));
 
         if (!$this->needsMetadata($node, false)) {
             return $content;

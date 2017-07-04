@@ -1,4 +1,5 @@
-import React, {PureComponent, PropTypes} from 'react';
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Icon from '@neos-project/react-ui-components/src/Icon/';
 import DropDown from '@neos-project/react-ui-components/src/DropDown/';
@@ -44,7 +45,7 @@ const DimensionSelector = props => {
             <Icon icon={icon} padded="right" className={style.dimensionCategory__icon}/>
             <I18n id={dimensionLabel}/>
             <br/>
-            <SelectBox options={presetOptions} onSelect={onPresetSelect} value={activePreset}/>
+            <SelectBox options={presetOptions} onValueChange={onPresetSelect} value={activePreset}/>
         </li>
     );
 };

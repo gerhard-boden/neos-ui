@@ -1,5 +1,6 @@
 import SelectBox from '@neos-project/react-ui-components/src/SelectBox/';
-import React, {PureComponent, PropTypes} from 'react';
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {$get, $transform} from 'plow-js';
 
@@ -48,7 +49,7 @@ export default class StyleSelect extends PureComponent {
 
     constructor(...args) {
         super(...args);
-        this.handleOnSelect = this.handleOnSelect.bind(this);
+        this.handleValueChange = this.handleValueChange.bind(this);
     }
 
     componentWillMount() {
@@ -56,7 +57,7 @@ export default class StyleSelect extends PureComponent {
         this.calculateEnabledFormattingRulesForNodeType = calculateEnabledFormattingRulesForNodeTypeFactory(globalRegistry);
     }
 
-    handleOnSelect(selectedStyleId) {
+    handleValueChange(selectedStyleId) {
         const {toolbarRegistry} = this.props;
         const style = toolbarRegistry.get(selectedStyleId);
         if (style && style.formattingRule) {
@@ -90,7 +91,7 @@ export default class StyleSelect extends PureComponent {
             <SelectBox
                 options={options}
                 value={selectedStyle ? selectedStyle.id : null}
-                onSelect={this.handleOnSelect}
+                onValueChange={this.handleValueChange}
                 />
         );
     }

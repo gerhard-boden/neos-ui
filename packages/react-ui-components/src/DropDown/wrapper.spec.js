@@ -17,23 +17,23 @@ test('should render the "className" prop if passed.', () => {
         className: 'barClassName'
     });
 
-    expect(dd.childAt(0).hasClass('barClassName')).toBeTruthy();
+    expect(dd.hasClass('barClassName')).toBeTruthy();
 });
 test('should set the "isOpen" state value to opposite when calling the toggle method.', () => {
     const dd = shallow();
 
-    dd.instance().toggle();
+    dd.instance().handleToggle();
 
     expect(dd.state('isOpen')).toBeTruthy();
 
-    dd.instance().toggle();
+    dd.instance().handleToggle();
 
     expect(dd.state('isOpen')).toBeFalsy();
 });
 test('should set the "isOpen" state value to false when calling the close method.', () => {
     const dd = shallow();
 
-    dd.instance().close();
+    dd.instance().handleClose();
 
     expect(dd.state('isOpen')).toBeFalsy();
 });

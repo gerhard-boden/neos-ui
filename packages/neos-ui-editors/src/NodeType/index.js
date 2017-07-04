@@ -1,4 +1,5 @@
-import React, {PureComponent, PropTypes} from 'react';
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {$get} from 'plow-js';
 
@@ -47,7 +48,7 @@ export default class NodeType extends PureComponent {
             }));
 
         if (options.length) {
-            return <SelectBox options={options} value={value} onSelect={commit}/>;
+            return <SelectBox options={options} value={value} onValueChange={commit}/>;
         }
 
         return (
